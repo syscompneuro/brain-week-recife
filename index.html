@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="pt-BR" data-lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escutando os Neurônios · Listening to Neurons — Semana do Cérebro Recife 2027</title>
+<meta name="description" content="Semana do Cérebro 2027 no LNSC/UFPE, Recife: escute seus próprios neurônios. Brain Awareness Week 2027 at LNSC/UFPE, Recife, Brazil.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+  :root{
+    --paper:#F3E7CF; --paper-2:#EBDCBF; --ink:#1C1A17; --telha:#A8321C;
+    --ocre:#D99A2B; --musgo:#3E6B3A; --anil:#24406E; --muted:#4A443B;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'IBM Plex Serif',Georgia,serif;font-size:18px;line-height:1.6}
+  a{color:var(--telha)} a:hover{color:#7a2414}
+  img,svg{display:block;max-width:100%}
+
+  /* idioma: mostra só o bloco do idioma ativo */
+  [data-lang="pt"] [lang="en"]{display:none!important}
+  [data-lang="en"] [lang="pt-BR"]{display:none!important}
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  .saw{height:22px;background:
+      linear-gradient(135deg,var(--ink) 50%,transparent 50%) 0 0/32px 22px repeat-x,
+      linear-gradient(225deg,var(--ink) 50%,transparent 50%) 0 0/32px 22px repeat-x}
+  .saw.up{transform:scaleY(-1)}
+  .mono{font-family:'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase}
+  .slab{font-family:'Alfa Slab One',Georgia,serif;font-weight:400}
+
+  /* topo */
+  header{position:sticky;top:0;z-index:10;background:var(--paper);border-bottom:3px solid var(--ink)}
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 20px;max-width:1080px;margin:0 auto;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+  .brand span{font-family:'Alfa Slab One',serif;font-size:18px}
+  nav ul{list-style:none;margin:0;padding:0;display:flex;gap:18px;flex-wrap:wrap}
+  nav a{font-family:'IBM Plex Mono',monospace;font-size:14px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);text-decoration:none}
+  nav a:hover{color:var(--telha);text-decoration:underline}
+  .lang{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:14px;border:2px solid var(--ink);background:var(--ink);color:var(--paper);padding:8px 14px;min-height:44px;cursor:pointer}
+  .lang:hover{background:var(--telha);border-color:var(--telha)}
+
+  /* hero */
+  .hero{padding:48px 0 40px}
+  .frame{border:4px solid var(--ink);padding:6px}
+  .frame-in{border:1.5px solid var(--ink);padding:40px 32px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:32px;align-items:center}
+  .kicker{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600}
+  h1{margin:.3em 0 .15em;font-size:clamp(44px,7vw,80px);line-height:1}
+  .sub{font-family:'Alfa Slab One',serif;color:var(--telha);font-size:clamp(22px,3vw,32px);margin:0}
+  .verse{font-style:italic;font-size:20px;line-height:1.45;margin:18px 0 22px;white-space:pre-line}
+  .when{display:inline-block;border:2px solid var(--ink);padding:10px 16px;font-size:15px;font-weight:600}
+  .btn{display:inline-flex;align-items:center;min-height:44px;margin:16px 12px 0 0;padding:10px 20px;background:var(--telha);color:var(--paper);text-decoration:none;font-family:'IBM Plex Mono',monospace;font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:15px;border:2px solid var(--ink)}
+  .btn:hover{background:var(--ink);color:var(--paper)}
+  .btn.ghost{background:transparent;color:var(--ink)}
+  .btn.ghost:hover{background:var(--ink);color:var(--paper)}
+
+  section{padding:56px 0;border-top:1.5px solid var(--ink)}
+  section:nth-of-type(even){background:var(--paper-2)}
+  h2{font-family:'Alfa Slab One',serif;font-weight:400;font-size:clamp(30px,4vw,42px);margin:0 0 20px;display:flex;align-items:center;gap:14px}
+  .lead{font-size:20px;max-width:760px}
+
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;margin-top:28px}
+  .card{background:var(--paper);border:2px solid var(--ink);padding:22px;box-shadow:6px 6px 0 var(--ink)}
+  .card .num{font-family:'Alfa Slab One',serif;font-size:36px;line-height:1}
+  .card h3{font-family:'Alfa Slab One',serif;font-weight:400;font-size:22px;margin:10px 0 8px;line-height:1.15}
+  .card p{margin:0;font-size:16px}
+  .c1 .num{color:var(--telha)} .c2 .num{color:var(--ocre)} .c3 .num{color:var(--musgo)} .c4 .num{color:var(--anil)}
+
+  table{width:100%;border-collapse:collapse;font-size:16px;background:var(--paper)}
+  .tbl{overflow-x:auto;border:2px solid var(--ink);margin-top:24px}
+  th,td{text-align:left;padding:12px 16px;border-bottom:1.5px solid var(--ink);vertical-align:top}
+  th{font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.06em;font-size:13px;background:var(--ink);color:var(--paper)}
+  tr:last-child td{border-bottom:0}
+  .note{font-size:15px;color:var(--muted);margin-top:12px}
+
+  .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px}
+  ul.list{padding-left:22px;margin:0} ul.list li{margin-bottom:8px}
+
+  .logos{display:flex;flex-wrap:wrap;gap:14px;margin-top:20px}
+  .logo-slot{border:1.5px dashed var(--ink);padding:18px 22px;font-family:'IBM Plex Mono',monospace;font-size:14px;min-width:150px;text-align:center}
+
+  footer{background:var(--ink);color:var(--paper);padding:36px 0 28px;font-size:15px}
+  footer a{color:var(--ocre)} footer a:hover{color:#f0c46b}
+  footer .mono{font-size:13px;opacity:.85}
+
+  @media (max-width:760px){
+    .frame-in{grid-template-columns:1fr;padding:28px 18px}
+    .mark{max-width:300px;margin:0 auto}
+    nav ul{gap:12px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bar">
+    <a class="brand" href="#top" aria-label="Início / Home">
+      <svg width="36" height="36" viewBox="40 20 340 330" aria-hidden="true"><use href="#neuron"></use></svg>
+      <span lang="pt-BR">Escutando os Neurônios</span><span lang="en">Listening to Neurons</span>
+    </a>
+    <nav aria-label="Seções / Sections">
+      <ul>
+        <li><a href="#sobre"><span lang="pt-BR">Sobre</span><span lang="en">About</span></a></li>
+        <li><a href="#atividades"><span lang="pt-BR">Atividades</span><span lang="en">Activities</span></a></li>
+        <li><a href="#programacao"><span lang="pt-BR">Programação</span><span lang="en">Schedule</span></a></li>
+        <li><a href="#escolas"><span lang="pt-BR">Escolas</span><span lang="en">Schools</span></a></li>
+        <li><a href="#contato"><span lang="pt-BR">Contato</span><span lang="en">Contact</span></a></li>
+      </ul>
+    </nav>
+    <button class="lang" id="langBtn" type="button" aria-label="Switch to English">EN</button>
+  </div>
+</header>
+
+<!-- símbolo reutilizável: neurônio-sombrinha de frevo -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="neuron" viewBox="40 20 340 330">
+    <g stroke="#1C1A17" stroke-width="4" stroke-linecap="round" fill="none">
+      <line x1="90" y1="170" x2="62" y2="170"/><line x1="98.4" y1="127.9" x2="79.9" y2="120.2"/>
+      <line x1="122.2" y1="92.2" x2="102.4" y2="72.4"/><line x1="157.9" y1="68.4" x2="150.3" y2="49.9"/>
+      <line x1="200" y1="60" x2="200" y2="32"/><line x1="242.1" y1="68.4" x2="249.7" y2="49.9"/>
+      <line x1="277.8" y1="92.2" x2="297.6" y2="72.4"/><line x1="301.6" y1="127.9" x2="320.1" y2="120.2"/>
+      <line x1="310" y1="170" x2="338" y2="170"/>
+    </g>
+    <g fill="#1C1A17">
+      <circle cx="62" cy="170" r="6"/><circle cx="79.9" cy="120.2" r="6"/><circle cx="102.4" cy="72.4" r="6"/>
+      <circle cx="150.3" cy="49.9" r="6"/><circle cx="200" cy="32" r="6"/><circle cx="249.7" cy="49.9" r="6"/>
+      <circle cx="297.6" cy="72.4" r="6"/><circle cx="320.1" cy="120.2" r="6"/><circle cx="338" cy="170" r="6"/>
+    </g>
+    <g stroke="#1C1A17" stroke-width="3" stroke-linejoin="round">
+      <path d="M200 170 L90 170 A110 110 0 0 1 98.4 127.9 Z" fill="#A8321C"/>
+      <path d="M200 170 L98.4 127.9 A110 110 0 0 1 122.2 92.2 Z" fill="#D99A2B"/>
+      <path d="M200 170 L122.2 92.2 A110 110 0 0 1 157.9 68.4 Z" fill="#3E6B3A"/>
+      <path d="M200 170 L157.9 68.4 A110 110 0 0 1 200 60 Z" fill="#24406E"/>
+      <path d="M200 170 L200 60 A110 110 0 0 1 242.1 68.4 Z" fill="#A8321C"/>
+      <path d="M200 170 L242.1 68.4 A110 110 0 0 1 277.8 92.2 Z" fill="#D99A2B"/>
+      <path d="M200 170 L277.8 92.2 A110 110 0 0 1 301.6 127.9 Z" fill="#3E6B3A"/>
+      <path d="M200 170 L301.6 127.9 A110 110 0 0 1 310 170 Z" fill="#24406E"/>
+    </g>
+    <path d="M107 170 A93 93 0 0 1 293 170" stroke="#F3E7CF" stroke-width="3.5" stroke-dasharray="2 9" stroke-linecap="round" fill="none"/>
+    <path d="M90 170 L310 170" stroke="#1C1A17" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="200" cy="170" r="14" fill="#F3E7CF" stroke="#1C1A17" stroke-width="4"/>
+    <circle cx="200" cy="170" r="4.5" fill="#1C1A17"/>
+    <path d="M200 184 L200 278 Q200 300 222 300 L250 300 L262 222 L274 318 Q282 300 296 300 L330 300" stroke="#1C1A17" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <g stroke="#A8321C" stroke-width="4.5" stroke-linecap="round" fill="none">
+      <path d="M340.3 287.7 A16 16 0 0 1 340.3 312.3"/><path d="M348 278.6 A28 28 0 0 1 348 321.4"/><path d="M355.7 269.4 A40 40 0 0 1 355.7 330.6"/>
+    </g>
+  </symbol>
+  <symbol id="star" viewBox="-22 -22 44 44">
+    <polygon points="20,0 8.31,3.44 14.14,14.14 3.44,8.31 0,20 -3.44,8.31 -14.14,14.14 -8.31,3.44 -20,0 -8.31,-3.44 -14.14,-14.14 -3.44,-8.31 0,-20 3.44,-8.31 14.14,-14.14 8.31,-3.44" fill="#A8321C"/>
+  </symbol>
+</svg>
+
+<main id="top">
+  <div class="saw"></div>
+  <div class="wrap hero">
+    <div class="frame"><div class="frame-in">
+      <svg class="mark" viewBox="40 20 340 330" role="img" aria-label="Neurônio desenhado como sombrinha de frevo / Neuron drawn as a frevo umbrella"><use href="#neuron"></use></svg>
+      <div>
+        <div class="kicker mono"><svg width="20" height="20" aria-hidden="true"><use href="#star"></use></svg>
+          <span lang="pt-BR">Semana do Cérebro 2027 · Recife, PE</span><span lang="en">Brain Awareness Week 2027 · Recife, Brazil</span>
+        </div>
+        <h1 class="slab"><span lang="pt-BR">Escutando os Neurônios</span><span lang="en">Listening to Neurons</span></h1>
+        <p class="sub"><span lang="pt-BR">De Galvani ao Neuropixels</span><span lang="en">From Galvani to Neuropixels</span></p>
+        <p class="verse" lang="pt-BR">Do sapo de Galvani
+ao Neuropixels de agora,
+vem escutar o neurônio
+que o cérebro canta e chora.</p>
+        <p class="verse" lang="en">From Galvani’s frog of old
+to the Neuropixels of today,
+come and listen to the neuron
+sing the brain in its own way.</p>
+        <div class="when mono"><span lang="pt-BR">15–19 de março de 2027 · LNSC / UFPE</span><span lang="en">15–19 March 2027 · LNSC / UFPE</span></div>
+        <div>
+          <a class="btn" href="#escolas"><span lang="pt-BR">Inscreva sua escola</span><span lang="en">Register your school</span></a>
+          <a class="btn ghost" href="#atividades"><span lang="pt-BR">Ver atividades</span><span lang="en">See activities</span></a>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <section id="sobre">
+    <div class="wrap">
+      <h2><svg width="26" height="26" aria-hidden="true"><use href="#star"></use></svg><span lang="pt-BR">Sobre o evento</span><span lang="en">About the event</span></h2>
+      <p class="lead" lang="pt-BR">O cérebro fala por eletricidade. Durante uma semana, estudantes de escolas públicas, professores e o público em geral vão entrar em um laboratório de neurociência de verdade, no Departamento de Física da UFPE, para <strong>escutar</strong> os próprios sinais nervosos, ver neurônios serem <strong>acesos com luz</strong> e conhecer as tecnologias usadas hoje para estudar o cérebro, de Galvani ao Neuropixels e à optogenética, Prêmio Nobel de Medicina de 2026.</p>
+      <p class="lead" lang="en">The brain speaks through electricity. For one week, public school students, teachers and the general public will step into a working neuroscience laboratory at the Department of Physics, UFPE, to <strong>listen</strong> to their own nerve signals, watch neurons being <strong>switched on with light</strong>, and discover the technologies used today to study the brain: from Galvani to Neuropixels and to optogenetics, awarded the 2026 Nobel Prize in Physiology or Medicine.</p>
+      <p lang="pt-BR">O evento faz parte da campanha global <strong>Brain Awareness Week</strong> e é organizado pelo Laboratório de Neurociência de Sistemas e Computacional (LNSC/UFPE).</p>
+      <p lang="en">The event is part of the global <strong>Brain Awareness Week</strong> campaign and is organized by the Laboratory of Systems and Computational Neuroscience (LNSC/UFPE).</p>
+    </div>
+  </section>
+
+  <section id="atividades">
+    <div class="wrap">
+      <h2><svg width="26" height="26" aria-hidden="true"><use href="#star"></use></svg><span lang="pt-BR">Quatro estações práticas</span><span lang="en">Four hands-on stations</span></h2>
+      <div class="cards">
+        <article class="card c1">
+          <div class="num">1</div>
+          <h3><span lang="pt-BR">Escute seus nervos</span><span lang="en">Hear your own nerves</span></h3>
+          <p lang="pt-BR">Com kits SpikerBox, você registra e ouve os sinais elétricos dos seus próprios músculos e nervos (EMG).</p>
+          <p lang="en">With SpikerBox kits, record and listen to the electrical signals of your own muscles and nerves (EMG).</p>
+        </article>
+        <article class="card c2">
+          <div class="num">2</div>
+          <h3><span lang="pt-BR">Neurônios que acendem com luz</span><span lang="en">Neurons switched on by light</span></h3>
+          <p lang="pt-BR">Um “neurônio” de Arduino com sensor de luz, LED e alto-falante mostra como funciona a optogenética, sem uso de animais.</p>
+          <p lang="en">An Arduino “neuron” with a light sensor, LED and speaker shows how optogenetics works, without using animals.</p>
+        </article>
+        <article class="card c3">
+          <div class="num">3</div>
+          <h3><span lang="pt-BR">Simule um neurônio</span><span lang="en">Simulate a neuron</span></h3>
+          <p lang="pt-BR">No computador, você controla um modelo de Hodgkin–Huxley e vê como nasce um potencial de ação.</p>
+          <p lang="en">On the computer, control a Hodgkin–Huxley model and watch an action potential being born.</p>
+        </article>
+        <article class="card c4">
+          <div class="num">4</div>
+          <h3><span lang="pt-BR">Por dentro do laboratório</span><span lang="en">Inside a real lab</span></h3>
+          <p lang="pt-BR">Visita guiada ao LNSC: sondas Neuropixels, registros eletrofisiológicos e análise de comportamento com inteligência artificial.</p>
+          <p lang="en">Guided tour of the LNSC: Neuropixels probes, electrophysiology setups and AI-based behavioral tracking.</p>
+        </article>
+      </div>
+      <p class="note" lang="pt-BR">Cada visita termina com uma conversa com pesquisadores sobre cérebro e sociedade: drogas e circuitos de recompensa, aprendizagem, saúde mental e a ética das neurotecnologias.</p>
+      <p class="note" lang="en">Each visit ends with a conversation with researchers about brain and society: drugs and reward circuits, learning, mental health and the ethics of neurotechnology.</p>
+    </div>
+  </section>
+
+  <section id="programacao">
+    <div class="wrap">
+      <h2><svg width="26" height="26" aria-hidden="true"><use href="#star"></use></svg><span lang="pt-BR">Programação</span><span lang="en">Schedule</span></h2>
+      <div class="tbl">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col"><span lang="pt-BR">Dia</span><span lang="en">Day</span></th>
+              <th scope="col"><span lang="pt-BR">Manhã (9h–12h)</span><span lang="en">Morning (9am–12pm)</span></th>
+              <th scope="col"><span lang="pt-BR">Tarde (14h–17h)</span><span lang="en">Afternoon (2–5pm)</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><span lang="pt-BR">Seg, 15/03</span><span lang="en">Mon, 15 Mar</span></td><td><span lang="pt-BR">Turma escolar</span><span lang="en">School group</span></td><td><span lang="pt-BR">Turma escolar</span><span lang="en">School group</span></td></tr>
+            <tr><td><span lang="pt-BR">Ter, 16/03</span><span lang="en">Tue, 16 Mar</span></td><td><span lang="pt-BR">Turma escolar</span><span lang="en">School group</span></td><td><span lang="pt-BR">Turma escolar</span><span lang="en">School group</span></td></tr>
+            <tr><td><span lang="pt-BR">Qua, 17/03</span><span lang="en">Wed, 17 Mar</span></td><td><span lang="pt-BR">Turma escolar</span><span lang="en">School group</span></td><td><span lang="pt-BR">Turma escolar</span><span lang="en">School group</span></td></tr>
+            <tr><td><span lang="pt-BR">Qui, 18/03</span><span lang="en">Thu, 18 Mar</span></td><td><span lang="pt-BR">Turma escolar</span><span lang="en">School group</span></td><td><span lang="pt-BR">Turma escolar</span><span lang="en">School group</span></td></tr>
+            <tr><td><span lang="pt-BR">Sex, 19/03</span><span lang="en">Fri, 19 Mar</span></td><td><span lang="pt-BR">Turma escolar</span><span lang="en">School group</span></td><td><strong><span lang="pt-BR">Laboratório aberto ao público</span><span lang="en">Open lab for the public</span></strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note" lang="pt-BR">Programação provisória. Cada turno recebe uma turma de até 25 estudantes.</p>
+      <p class="note" lang="en">Provisional schedule. Each session welcomes one group of up to 25 students.</p>
+    </div>
+  </section>
+
+  <section id="escolas">
+    <div class="wrap two">
+      <div>
+        <h2><svg width="26" height="26" aria-hidden="true"><use href="#star"></use></svg><span lang="pt-BR">Para escolas</span><span lang="en">For schools</span></h2>
+        <p lang="pt-BR">As visitas são <strong>gratuitas</strong> e voltadas a estudantes de 13 a 18 anos de escolas públicas do Recife e da Região Metropolitana, com prioridade para escolas de bairros periféricos.</p>
+        <p lang="en">Visits are <strong>free of charge</strong> and aimed at students aged 13–18 from public schools in Recife and its metropolitan area, with priority for schools in underserved neighborhoods.</p>
+        <a class="btn" href="[LINK DO FORMULÁRIO]"><span lang="pt-BR">Formulário de inscrição</span><span lang="en">Registration form</span></a>
+      </div>
+      <div>
+        <h3 class="slab" style="font-size:24px;margin:8px 0 12px"><span lang="pt-BR">O que oferecemos</span><span lang="en">What we provide</span></h3>
+        <ul class="list" lang="pt-BR">
+          <li>Transporte para as turmas (sujeito a disponibilidade)</li>
+          <li>Lanche para os estudantes</li>
+          <li>Guia de atividades para professores</li>
+          <li>Espaços acessíveis e atividades visuais, sonoras e táteis</li>
+        </ul>
+        <ul class="list" lang="en">
+          <li>Transport for school groups (subject to availability)</li>
+          <li>Snacks for students</li>
+          <li>Activity guide for teachers</li>
+          <li>Accessible spaces and visual, auditory and tactile activities</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="parceiros">
+    <div class="wrap">
+      <h2><svg width="26" height="26" aria-hidden="true"><use href="#star"></use></svg><span lang="pt-BR">Realização e apoio</span><span lang="en">Organizers and partners</span></h2>
+      <div class="logos">
+        <div class="logo-slot">[LOGO LNSC]</div>
+        <div class="logo-slot">[LOGO UFPE]</div>
+        <div class="logo-slot">[LOGO IBRO]</div>
+        <div class="logo-slot">[LOGO DANA]</div>
+        <div class="logo-slot">[LOGO BRAIN AWARENESS WEEK]</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="saw up"></div>
+<footer id="contato">
+  <div class="wrap two">
+    <div>
+      <p class="slab" style="font-size:22px;margin:0 0 8px"><span lang="pt-BR">Escutando os Neurônios</span><span lang="en">Listening to Neurons</span></p>
+      <p style="margin:0">Laboratório de Neurociência de Sistemas e Computacional (LNSC)<br>
+        <span lang="pt-BR">Departamento de Física, Universidade Federal de Pernambuco</span><span lang="en">Department of Physics, Federal University of Pernambuco</span><br>
+        Av. Prof. Aníbal Fernandes, s/n, Cidade Universitária · Recife, PE</p>
+    </div>
+    <div>
+      <p class="mono" style="margin:0 0 6px"><span lang="pt-BR">Contato</span><span lang="en">Contact</span></p>
+      <p style="margin:0">Prof. Leandro Aguiar<br><a href="mailto:[SEU EMAIL]">[SEU EMAIL]</a></p>
+      <p class="mono" style="margin-top:18px">Brain Awareness Week 2027</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('langBtn');
+    function setLang(l) {
+      root.setAttribute('data-lang', l);
+      root.setAttribute('lang', l === 'en' ? 'en' : 'pt-BR');
+      btn.textContent = l === 'en' ? 'PT' : 'EN';
+      btn.setAttribute('aria-label', l === 'en' ? 'Mudar para português' : 'Switch to English');
+      try { localStorage.setItem('lang', l); } catch (e) {}
+    }
+    var start = new URLSearchParams(location.search).get('lang');
+    if (!start) { try { start = localStorage.getItem('lang'); } catch (e) {} }
+    setLang(start === 'en' ? 'en' : 'pt');
+    btn.addEventListener('click', function () {
+      setLang(root.getAttribute('data-lang') === 'en' ? 'pt' : 'en');
+    });
+  })();
+</script>
+</body>
+</html>
